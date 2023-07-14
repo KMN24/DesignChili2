@@ -17,8 +17,8 @@ import com.design2.chili2.R
 import com.design2.chili2.extensions.*
 import com.design2.chili2.util.IconSize
 import com.design2.chili2.util.RoundedCornerMode
-import com.design2.chili2.view.image.SquircleView
 import com.design2.chili2.view.shimmer.ShimmeringView
+import com.design2.shadow_layout.ShadowLayout
 import com.facebook.shimmer.ShimmerFrameLayout
 
 open class BaseCellView @JvmOverloads constructor(
@@ -26,7 +26,7 @@ open class BaseCellView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = R.attr.cellViewDefaultStyle,
     defStyleRes: Int = R.style.Chili_CellViewStyle_BaseCellViewStyle
-) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes), ShimmeringView {
+) : ShadowLayout(context, attrs, defStyleAttr, defStyleRes), ShimmeringView {
 
     lateinit var view: BaseCellViewVariables
 
