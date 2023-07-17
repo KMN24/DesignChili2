@@ -18,7 +18,7 @@ import com.design2.chili2.extensions.*
 import com.design2.chili2.util.IconSize
 import com.design2.chili2.util.RoundedCornerMode
 import com.design2.chili2.view.shimmer.ShimmeringView
-import com.design2.shadow_layout.ShadowLayout
+import com.design2.chili2.view.container.shadow_layout.ShadowLayout
 import com.facebook.shimmer.ShimmerFrameLayout
 
 open class BaseCellView @JvmOverloads constructor(

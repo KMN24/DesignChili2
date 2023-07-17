@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             app:title="BaseCellView with icon" />
 
-
         <com.design2.chili2.view.cells.BaseCellView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

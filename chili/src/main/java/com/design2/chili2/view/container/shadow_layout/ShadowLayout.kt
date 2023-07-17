@@ -1,4 +1,4 @@
-package com.design2.shadow_layout
+package com.design2.chili2.view.container.shadow_layout
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,8 +7,10 @@ import android.graphics.Matrix
 import android.os.Build
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import com.design2.shadow_layout.effect.*
-import com.design2.shadow_layout.utils.*
+import com.design2.chili2.R
+import com.design2.chili2.extensions.setupRoundedCellCornersMode
+import com.design2.chili2.view.container.shadow_layout.effect.*
+import com.design2.chili2.view.container.shadow_layout.utils.ViewHelper
 import kotlin.math.abs
 
 open class ShadowLayout : LinearLayout {
@@ -64,13 +66,17 @@ open class ShadowLayout : LinearLayout {
                 val backgroundColor = if (hasValue(R.styleable.ShadowLayout_background_color)) {
                     getColor(
                         R.styleable.ShadowLayout_background_color,
-                        Color.parseColor("#ffffffff")
+                        R.attr.ChiliCellViewBackground
                     )
                 } else {
                     getColor(
                         R.styleable.ShadowLayout_android_background,
-                        Color.parseColor("#ffffffff")
+                        R.attr.ChiliCellViewBackground
                     )
+                }
+
+                getInteger(R.styleable.ShadowLayout_roundedCornerMode, -1).takeIf { it != -1 }?.let {
+                    this@ShadowLayout.setupRoundedCellCornersMode(it)
                 }
 
                 viewHelper.strokeInfo = Stroke().apply {
