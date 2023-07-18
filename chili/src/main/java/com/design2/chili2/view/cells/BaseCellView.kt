@@ -55,7 +55,10 @@ open class BaseCellView @JvmOverloads constructor(
         )
     }
 
-    protected open fun obtainAttributes(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
+    override fun obtainAttributes(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
+
+        super.obtainAttributes(context, attrs, defStyleAttr, defStyleRes)
+
         context.obtainStyledAttributes(attrs, R.styleable.BaseCellView, defStyleAttr, defStyleRes)
             .run {
                 getResourceId(R.styleable.BaseCellView_android_icon, -1).takeIf { it != -1 }?.let {
@@ -63,9 +66,6 @@ open class BaseCellView @JvmOverloads constructor(
                 }
                 getString(R.styleable.BaseCellView_title)?.let { setTitle(it) }
                 getString(R.styleable.BaseCellView_subtitle)?.let { setSubtitle(it) }
-                getInteger(R.styleable.BaseCellView_roundedCornerMode, 0).let {
-                    this@BaseCellView.setupRoundedCellCornersMode(it)
-                }
                 getBoolean(R.styleable.BaseCellView_isDividerVisible, true).let {
                     setDividerVisibility(it)
                 }

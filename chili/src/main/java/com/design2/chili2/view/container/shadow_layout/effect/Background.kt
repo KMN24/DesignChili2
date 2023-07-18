@@ -19,11 +19,11 @@ class Background : Effect {
     override var alpha = 0f
 
     private var backgroundColor = ViewHelper.NOT_SET_COLOR
-    private var strokeInfo: Stroke? = null
+//    private var strokeInfo: Stroke? = null
     private var shadowInfo: Shadow? = null
 
-    fun init(strokeInfo: Stroke?, backgroundColor: Int) {
-        this.strokeInfo = strokeInfo
+    fun init(backgroundColor: Int) {
+//        this.strokeInfo = strokeInfo
         this.backgroundColor = backgroundColor
 
         updatePaint()
@@ -38,7 +38,7 @@ class Background : Effect {
 
     override fun updatePaint() {
 
-        if (strokeInfo?.isEnable == true) {
+        /*if (strokeInfo?.isEnable == true) {
 
             strokePaint.apply {
                 isAntiAlias = true
@@ -55,7 +55,7 @@ class Background : Effect {
                 }
             }
         }
-
+*/
         paint.apply {
             isAntiAlias = true
             color = backgroundColor
@@ -69,7 +69,7 @@ class Background : Effect {
 
     override fun updatePath(radiusInfo: Radius?) {
 
-        if (strokeInfo?.isEnable == true) {
+        /*if (strokeInfo?.isEnable == true) {
 
             val adjustOffset = strokeInfo!!.strokeWidth.div(2f).toInt()
             val strokeRect = RectF(offsetLeft - adjustOffset, offsetTop - adjustOffset, offsetRight + adjustOffset, offsetBottom + adjustOffset)
@@ -86,7 +86,7 @@ class Background : Effect {
 
                 close()
             }
-        }
+        }*/
 
         val rect = RectF(offsetLeft, offsetTop, offsetRight, offsetBottom)
 
@@ -107,10 +107,10 @@ class Background : Effect {
 
     override fun drawEffect(canvas: Canvas?) {
 
-        if (strokeInfo?.isEnable == true) {
+        /*if (strokeInfo?.isEnable == true) {
             canvas?.drawPath(strokePath, strokePaint)
         }
-
+*/
         canvas?.drawPath(path, paint)
     }
 
@@ -124,7 +124,7 @@ class Background : Effect {
         updatePaint()
     }
 
-    fun updateStrokeWidth(strokeWidth: Float) {
+    /*fun updateStrokeWidth(strokeWidth: Float) {
 
         if (strokeInfo == null) {
             strokeInfo = Stroke()
@@ -145,5 +145,5 @@ class Background : Effect {
 
     fun getStrokeInfo(): Stroke? {
         return null
-    }
+    }*/
 }
