@@ -178,27 +178,6 @@ fun View.setupRoundedCellCornersMode(modeValue: Int) {
     )
 }
 
-fun View.setupRoundedCellCornersModeAndReturn(modeValue: Int): Pair<RoundedCornerMode, Int> {
-    var roundedCornerMode: Pair<RoundedCornerMode, Int>
-    this.setBackgroundResource(
-        when (modeValue) {
-            RoundedCornerMode.TOP.value -> R.drawable.chili_cell_rounded_top_background.also {
-                roundedCornerMode = Pair(RoundedCornerMode.TOP, it)
-            }
-            RoundedCornerMode.MIDDLE.value -> R.drawable.chili_cell_rounded_middle_background.also {
-                roundedCornerMode = Pair(RoundedCornerMode.MIDDLE, it)
-            }
-            RoundedCornerMode.BOTTOM.value -> R.drawable.chili_cell_rounded_bottom_background.also {
-                roundedCornerMode = Pair(RoundedCornerMode.BOTTOM, it)
-            }
-            else -> R.drawable.chili_cell_rounded_background.also {
-                roundedCornerMode = Pair(RoundedCornerMode.SINGLE, it)
-            }
-        }
-    )
-    return roundedCornerMode
-}
-
 fun ViewGroup.setIsSurfaceClickable(isSurfaceClickable: Boolean) {
     isClickable = isSurfaceClickable
     isFocusable = isSurfaceClickable

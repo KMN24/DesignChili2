@@ -140,6 +140,13 @@
         <attr name="cellIconBottomMargin" format="dimension"/>
         <attr name="cellIconStartMargin" format="dimension"/>
         <attr name="cellIconEndMargin" format="dimension"/>
+        <attr name="roundedCornerMode" format="enum">
+            <enum name="single" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="middle" value="2"/>
+            <enum name="bottom" value="3"/>
+            <enum name="without" value="4"/>
+        </attr>
         <attr name="isDividerVisible"/>
         <attr name="isSurfaceClickable"/>
         <attr name="isChevronVisible" format="boolean"/>
@@ -393,13 +400,7 @@
         <attr name="android:background" format="integer"/>
         <attr name="android:alpha" format="float"/>
 
-        <attr name="roundedCornerMode" format="enum">
-            <enum name="single" value="0"/>
-            <enum name="top" value="1"/>
-            <enum name="middle" value="2"/>
-            <enum name="bottom" value="3"/>
-            <enum name="without" value="4"/>
-        </attr>
+        <attr name="roundedCornerMode" />
 
         <attr name="stroke_width" format="dimension" />
         <attr name="stroke_color" format="color" />
