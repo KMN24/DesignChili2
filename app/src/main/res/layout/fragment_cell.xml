@@ -50,7 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_16dp"
             app:roundedCornerMode="top"
-            app:title="Заголовок" />
+            app:title="Заголовок"
+            app:shadow_color="@color/red_1"
+            app:shadow_blur="@dimen/padding_32dp"/>
 
         <com.design2.chili2.view.cells.BaseCellView
             android:id="@+id/second_cell"
@@ -111,12 +113,7 @@
             android:icon="@drawable/chili_ic_success"
             app:cellIconSize="small"
             app:isDividerVisible="false"
-            app:title="Заголовок"
-            app:background_radius="@dimen/padding_14dp"
-            app:shadow_blur="@dimen/padding_32dp"
-            app:shadow_color="#14010101"
-            app:shadow_offset_x="@dimen/padding_0dp"
-            app:shadow_offset_y="@dimen/padding_8dp"/>
+            app:title="Заголовок" />
 
         <com.design2.chili2.view.cells.BaseCellView
             android:layout_width="match_parent"
