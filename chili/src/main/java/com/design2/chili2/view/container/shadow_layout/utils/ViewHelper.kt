@@ -3,6 +3,7 @@ package com.design2.chili2.view.container.shadow_layout.utils
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import com.design2.chili2.util.RoundedCornerMode
 import com.design2.chili2.view.container.shadow_layout.effect.*
 import java.lang.NumberFormatException
 
@@ -21,13 +22,13 @@ class ViewHelper(private val context: Context) {
         this.canvas = canvas
     }
 
-    fun drawEffect(effect: Effect) {
+    fun drawEffect(effect: Effect, roundedCornerMode: RoundedCornerMode? = null) {
 
         if (canvas == null) {
             return
         }
 
-        effect.updatePath(radiusInfo)
+        effect.updatePath(radiusInfo, roundedCornerMode)
         effect.drawEffect(canvas)
     }
 

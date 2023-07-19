@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
+import com.design2.chili2.util.RoundedCornerMode
 import com.design2.chili2.view.container.shadow_layout.utils.Util
 import com.design2.chili2.view.container.shadow_layout.utils.ViewHelper
 
@@ -81,9 +82,14 @@ class Shadow : Effect {
         }
     }
 
-    override fun updatePath(radiusInfo: Radius?) {
+    override fun updatePath(radiusInfo: Radius?, roundedCornerMode: RoundedCornerMode?) {
 
-        val rect = RectF(offsetLeft, offsetTop, offsetRight, offsetBottom)
+        val rect = when(roundedCornerMode) {
+            RoundedCornerMode.TOP -> RectF(offsetLeft, offsetTop, offsetRight, 0f)
+            RoundedCornerMode.MIDDLE -> RectF(offsetLeft, 0f, offsetRight, 0f)
+            RoundedCornerMode.BOTTOM -> RectF(offsetLeft, 0f, offsetRight, offsetBottom)
+            else -> RectF(offsetLeft, offsetTop, offsetRight, offsetBottom)
+        }
 
         path.apply {
             reset()

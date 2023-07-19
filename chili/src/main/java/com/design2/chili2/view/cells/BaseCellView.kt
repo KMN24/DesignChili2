@@ -32,6 +32,8 @@ open class BaseCellView @JvmOverloads constructor(
 
     protected val shimmeringPairs: MutableMap<View, ShimmerFrameLayout?> = mutableMapOf()
 
+    private lateinit var localRoundedCornerMode: RoundedCornerMode
+
     init {
         inflateView(context)
         obtainAttributes(context, attrs, defStyleAttr, defStyleRes)
@@ -64,7 +66,8 @@ open class BaseCellView @JvmOverloads constructor(
                 getString(R.styleable.BaseCellView_title)?.let { setTitle(it) }
                 getString(R.styleable.BaseCellView_subtitle)?.let { setSubtitle(it) }
                 getInteger(R.styleable.BaseCellView_roundedCornerMode, 0).let {
-                    this@BaseCellView.setupRoundedCellCornersMode(it)
+                    localRoundedCornerMode = this@BaseCellView.setupRoundedCellCornersModeAndReturn(it)
+                    roundedCornerMode = localRoundedCornerMode
                 }
                 getBoolean(R.styleable.BaseCellView_isDividerVisible, true).let {
                     setDividerVisibility(it)

@@ -3,7 +3,7 @@
 
     <style name="Chili.CellViewStyle" parent="Chili.BaseChiliViewStyle">
         <item name="android:elevation">?ChiliCellViewElevation</item>
-        <item name="background_radius">@dimen/padding_14dp</item>
+        <item name="background_radius">@dimen/padding_12dp</item>
         <item name="shadow_blur">@dimen/padding_32dp</item>
         <item name="shadow_color">#14FF0000</item>
         <item name="shadow_offset_x">@dimen/padding_0dp</item>

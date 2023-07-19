@@ -1,6 +1,7 @@
 package com.design2.chili2.view.container.shadow_layout.effect
 
 import android.graphics.*
+import com.design2.chili2.util.RoundedCornerMode
 import com.design2.chili2.view.container.shadow_layout.utils.ViewHelper
 
 class Gradient : Effect {
@@ -68,7 +69,7 @@ class Gradient : Effect {
         }
     }
 
-    override fun updatePath(radiusInfo: Radius?) {
+    override fun updatePath(radiusInfo: Radius?, roundedCornerMode: RoundedCornerMode?) {
         val rect = RectF(offsetLeft, offsetTop, offsetRight, offsetBottom)
 
         path.apply {

@@ -6,12 +6,15 @@ import android.graphics.Matrix
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.design2.chili2.R
+import com.design2.chili2.util.RoundedCornerMode
 import com.design2.chili2.view.container.shadow_layout.effect.*
 import com.design2.chili2.view.container.shadow_layout.utils.ViewHelper
 import com.google.android.material.color.MaterialColors
 import kotlin.math.abs
 
 open class ShadowLayout : LinearLayout {
+
+    lateinit var roundedCornerMode: RoundedCornerMode
 
     private val viewHelper by lazy { ViewHelper(context) }
     private val background by lazy { Background() }
@@ -186,7 +189,7 @@ open class ShadowLayout : LinearLayout {
             updateCanvas(canvas)
 
             backgroundShadowList.forEach {
-                drawEffect(it)
+                drawEffect(it, roundedCornerMode)
             }
 
             drawEffect(background)
@@ -224,6 +227,7 @@ open class ShadowLayout : LinearLayout {
             foregroundShadowList.forEach {
                 updateOffset(it, width, height)
             }
+
         }
 
         for (i in 0 until childCount) {
