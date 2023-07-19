@@ -398,18 +398,7 @@
         <attr name="background_bottom_right_radius" format="dimension" />
         <attr name="background_color" format="color" />
         <attr name="android:background" format="integer"/>
-        <attr name="android:alpha" format="float"/>
-
-        <attr name="roundedCornerMode" />
-
-        <attr name="stroke_width" format="dimension" />
-        <attr name="stroke_color" format="color" />
-        <attr name="stroke_gradient_start_color" format="color"/>
-        <attr name="stroke_gradient_center_color" format="color"/>
-        <attr name="stroke_gradient_end_color" format="color"/>
-        <attr name="stroke_gradient_angle" format="integer"/>
-        <attr name="stroke_gradient_offset_x" format="dimension"/>
-        <attr name="stroke_gradient_offset_y" format="dimension"/>
+        <attr name="alpha" format="float"/>
 
         <attr name="shadow_color" format="color" />
         <attr name="shadow_offset_x" format="dimension" />

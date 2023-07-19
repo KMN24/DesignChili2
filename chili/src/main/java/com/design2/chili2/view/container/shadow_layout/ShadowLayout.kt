@@ -2,15 +2,13 @@ package com.design2.chili2.view.container.shadow_layout
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Matrix
-import android.os.Build
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.design2.chili2.R
-import com.design2.chili2.extensions.setupRoundedCellCornersMode
 import com.design2.chili2.view.container.shadow_layout.effect.*
 import com.design2.chili2.view.container.shadow_layout.utils.ViewHelper
+import com.google.android.material.color.MaterialColors
 import kotlin.math.abs
 
 open class ShadowLayout : LinearLayout {
@@ -45,10 +43,6 @@ open class ShadowLayout : LinearLayout {
 
         orientation = VERTICAL
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            setLayerType(LAYER_TYPE_SOFTWARE, null)
-        }
-
         if (attributeSet == null) {
             return
         }
@@ -61,60 +55,11 @@ open class ShadowLayout : LinearLayout {
         context.obtainStyledAttributes(attributeSet, R.styleable.ShadowLayout, defStyleAttr, defStyleRes).run {
             try {
                 clipOutLine = getBoolean(R.styleable.ShadowLayout_clipToOutline, false)
-                defaultAlpha = getFloat(R.styleable.ShadowLayout_android_alpha, 1f)
+                defaultAlpha = getFloat(R.styleable.ShadowLayout_alpha, 1f)
 
-                val backgroundColor = if (hasValue(R.styleable.ShadowLayout_background_color)) {
-                    getColor(
-                        R.styleable.ShadowLayout_background_color,
-                        R.attr.ChiliCellViewBackground
-                    )
-                } else {
-                    getColor(
-                        R.styleable.ShadowLayout_android_background,
-                        R.attr.ChiliCellViewBackground
-                    )
-                }
+                val backgroundColor = MaterialColors.getColor(this@ShadowLayout, R.attr.ChiliCellViewBackground)
 
-                getInteger(R.styleable.ShadowLayout_roundedCornerMode, -1).takeIf { it != -1 }?.let {
-                    this@ShadowLayout.setupRoundedCellCornersMode(it)
-                }
-
-                viewHelper.strokeInfo = Stroke().apply {
-                    strokeColor =
-                        getColor(R.styleable.ShadowLayout_stroke_color, ViewHelper.NOT_SET_COLOR)
-                    strokeWidth = getDimension(R.styleable.ShadowLayout_stroke_width, 0f)
-
-                    gradient = Gradient().apply {
-
-                        val gradientStartColor = getColor(
-                            R.styleable.ShadowLayout_stroke_gradient_start_color,
-                            ViewHelper.NOT_SET_COLOR
-                        )
-                        val gradientCenterColor = getColor(
-                            R.styleable.ShadowLayout_stroke_gradient_center_color,
-                            ViewHelper.NOT_SET_COLOR
-                        )
-                        val gradientEndColor = getColor(
-                            R.styleable.ShadowLayout_stroke_gradient_end_color,
-                            ViewHelper.NOT_SET_COLOR
-                        )
-                        val gradientOffsetX =
-                            getDimension(R.styleable.ShadowLayout_stroke_gradient_offset_x, 0f)
-                        val gradientOffsetY =
-                            getDimension(R.styleable.ShadowLayout_stroke_gradient_offset_y, 0f)
-                        val gradientAngle = getInt(R.styleable.ShadowLayout_stroke_gradient_angle, -1)
-
-                        val gradients = viewHelper.parseGradientArray(getString(R.styleable.ShadowLayout_gradient_array))
-                        val gradientPositions = viewHelper.parseGradientPositions(getString(R.styleable.ShadowLayout_gradient_positions))
-
-                        init(
-                            gradientAngle, gradientStartColor, gradientCenterColor, gradientEndColor,
-                            gradientOffsetX, gradientOffsetY, gradients?.toIntArray(), gradientPositions?.toFloatArray()
-                        )
-                    }
-                }
-
-                background.init(viewHelper.strokeInfo, backgroundColor)
+                background.init(backgroundColor)
                 background.updateAlpha(defaultAlpha)
 
                 viewHelper.radiusInfo = Radius().apply {
@@ -262,8 +207,6 @@ open class ShadowLayout : LinearLayout {
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
-        updatePadding()
-
         val width = abs(right - left)
         val height = abs(bottom - top)
 
@@ -286,11 +229,6 @@ open class ShadowLayout : LinearLayout {
         for (i in 0 until childCount) {
             getChildAt(i)?.alpha = defaultAlpha
         }
-    }
-
-    private fun updatePadding() {
-        val padding = viewHelper.calculatePadding()
-        setPadding(padding, padding, padding, padding)
     }
 
     fun updateBackgroundColor(color: Int) {
@@ -430,16 +368,6 @@ open class ShadowLayout : LinearLayout {
         return backgroundShadowList.size
     }
 
-    fun updateStrokeWidth(strokeWidth: Float) {
-        background.updateStrokeWidth(strokeWidth)
-        invalidate()
-    }
-
-    fun updateStrokeColor(color: Int) {
-        background.updateStrokeColor(color)
-        invalidate()
-    }
-
     fun updateGradientColor(startColor: Int, centerColor: Int, endColor: Int) {
         gradient.updateGradientColor(startColor, centerColor, endColor)
         invalidate()
@@ -487,10 +415,6 @@ open class ShadowLayout : LinearLayout {
 
     fun getRadiusInfo(): Radius? {
         return viewHelper.radiusInfo
-    }
-
-    fun getStrokeInfo(): Stroke? {
-        return viewHelper.strokeInfo
     }
 
     override fun setAlpha(alpha: Float) {

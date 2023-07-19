@@ -10,7 +10,6 @@ class ViewHelper(private val context: Context) {
 
     var canvas: Canvas? = null
     var radiusInfo: Radius? = null
-    var strokeInfo: Stroke? = null
 
     companion object {
         const val NOT_SET_COLOR = -101
@@ -174,15 +173,6 @@ class ViewHelper(private val context: Context) {
         }
 
         return list
-    }
-
-    fun calculatePadding(): Int {
-        val strokeWidth = strokeInfo?.strokeWidth ?: 0f
-        return if (strokeWidth > 0f) {
-            strokeWidth.toInt()
-        } else {
-            0
-        }
     }
 
     fun Float.toPx(): Float {

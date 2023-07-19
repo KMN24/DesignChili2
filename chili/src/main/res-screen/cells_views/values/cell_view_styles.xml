@@ -5,7 +5,7 @@
         <item name="android:elevation">?ChiliCellViewElevation</item>
         <item name="background_radius">@dimen/padding_14dp</item>
         <item name="shadow_blur">@dimen/padding_32dp</item>
-        <item name="shadow_color">#14010101</item>
+        <item name="shadow_color">#14FF0000</item>
         <item name="shadow_offset_x">@dimen/padding_0dp</item>
         <item name="shadow_offset_y">@dimen/padding_8dp</item>
     </style>
